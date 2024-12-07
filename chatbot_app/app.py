@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from langchain import OpenAI
+from langchain_openai import OpenAI
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def chat():
         return jsonify({"error": "No message provided"}), 400
 
     # Generate a response using the OpenAI model
-    response = llm(user_message)
+    response = llm.invoke(user_message)
 
     return jsonify({"response": response})
 
